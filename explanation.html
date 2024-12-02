@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explanation</title>
+    <link rel="stylesheet" href="explanation.css">
+</head>
+<body>
+    <div class="explanation-container">
+        <h1>JavaScript Logic Explanation</h1>
+        <p>The JavaScript file provides the core functionality of the calculator. Here’s how it works:</p>
+        <ul>
+            <li><strong>appendNumber(number):</strong> Adds the pressed number to the current input string and updates the display.</li>
+            <li><strong>appendOperator(operator):</strong> Adds a mathematical operator (+, -, *, /) to the input string, ensuring no consecutive operators are added.</li>
+            <li><strong>appendDot():</strong> Ensures a valid decimal point is added to the number or after an operator.</li>
+            <li><strong>calculate():</strong> Uses <code>eval()</code> to evaluate the input string and display the result. If the input is invalid, an error message is shown.</li>
+            <li><strong>clearDisplay():</strong> Clears the input and display, resetting the calculator.</li>
+        </ul>
+        <p>The logic is designed to handle basic edge cases like consecutive operators or invalid inputs.</p>
+        <a href="index.html" class="back-btn">Back to Calculator</a>
+    </div>
+</body>
+</html>
