@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice Scientifique</title>
+    <link rel="stylesheet" href="scientific.css">
+</head>
+<body>
+    <div class="scientific-calculator">
+            <input type="text" id="display" class="calculator-display" disabled>
+            <div class="buttons">
+                <!-- Basic Buttons (same as in base calculator) -->
+                <button class="btn" onclick="appendNumber('7')">7</button>
+                <button class="btn" onclick="appendNumber('8')">8</button>
+                <button class="btn" onclick="appendNumber('9')">9</button>
+                <button class="btn operator" onclick="appendOperator('/')">/</button>
+
+                <button class="btn function" onclick="applyFunction('sin')">sin</button>
+                <button class="btn function" onclick="applyFunction('cos')">cos</button>
+                <button class="btn function" onclick="applyFunction('tan')">tan</button>
+                <button class="btn function" onclick="applyFunction('asin')">asin</button>
+
+                <button class="btn" onclick="appendNumber('4')">4</button>
+                <button class="btn" onclick="appendNumber('5')">5</button>
+                <button class="btn" onclick="appendNumber('6')">6</button>
+
+                <button class="btn operator" onclick="appendOperator('*')">*</button>
+                
+                <button class="btn function" onclick="applyFunction('acos')">acos</button>
+                <button class="btn function" onclick="applyFunction('atan')">atan</button>
+                <button class="btn function" onclick="applyFunction('acos')">acos</button>
+                <button class="btn function" onclick="applyFunction('atan')">atan</button>
+
+                <button class="btn" onclick="appendNumber('1')">1</button>
+                <button class="btn" onclick="appendNumber('2')">2</button>
+                <button class="btn" onclick="appendNumber('3')">3</button>
+                <button class="btn operator" onclick="appendOperator('-')">-</button>
+
+
+                <button class="btn function" onclick="appendConstant('pi')">π</button>
+                <button class="btn function" onclick="appendConstant('e')">e</button>
+                <button class="btn function" onclick="applyExponential()">e^x</button>
+                <button class="btn function" onclick="calculateSquare()">x<sup>2</sup></button>
+
+                <button class="btn" onclick="appendNumber('0')">0</button>
+                <button class="btn" onclick="appendDot()">.</button>
+                <button class="btn" onclick="calculate()">=</button>
+                <button class="btn operator" onclick="appendOperator('+')">+</button>
+
+                
+
+                
+                <button class="btn function" onclick="calculateSquareRoot()">√x</button>
+                <button class="btn function" onclick="calculateInverse()">1/x</button>
+                <button class="btn function" onclick="calculatePercentage()">%</button>
+
+                <button class="btn clear" onclick="clearDisplay()">C</button>
+            </div>
+        </div>
+
+
+
+    <!-- Calculation History -->
+    <div class="history">
+        <h3>Historique</h3>
+        <ul id="history-list"></ul>
+    </div>
+
+    <a href="index.html" class="--btn">classics</a>
+
+    <script src="scientific.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explication du Code</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            background: #f0f2f5;
+            height: 100vh;
+        }
+
+        .code-section, .explanation-section {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .code-section {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            font-family: "Courier New", Courier, monospace;
+            border-right: 1px solid #ccc;
+        }
+
+        .code-section pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .explanation-section {
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .-btn {
+            margin-top: 30px;
+            margin-right: 30px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 15px;
+            background: #ffa500;
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s, transform 0.1s ease-in-out;
+        }
+
+        .--btn {
+            margin-top: 80px;
+            margin-right: 30px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 15px;
+            background: #ffa500;
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s, transform 0.1s ease-in-out;
+        }
+
+
+        .-btn:hover {
+            background: #cc8400;
+        }
+
+        .-btn:active {
+            transform: scale(0.95);
+        }
+
+        .--btn:hover {
+            background: #cc8400;
+        }
+
+        .--btn:active {
+            transform: scale(0.95);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="code-section">
+        <h1>Code JavaScript</h1>
+        <pre>
+let display = document.getElementById('display');
+let currentInput = '';
+let history = [];
+
+// Ajouter des nombres
+function appendNumber(number) {
+    currentInput += number;
+    display.value = currentInput;
+}
+
+// Ajouter des opérateurs
+function appendOperator(operator) {
+    if (currentInput && !['+', '-', '*', '/'].includes(currentInput.slice(-1))) {
+        currentInput += operator;
+        display.value = currentInput;
+    }
+}
+
+// Ajouter un point
+function appendDot() {
+    if (!currentInput.includes('.') || /[+\-*/]/.test(currentInput.slice(-1))) {
+        currentInput += '.';
+        display.value = currentInput;
+    }
+}
+
+// Calculer le résultat
+function calculate() {
+    try {
+        let result = eval(currentInput);
+        history.push(`${currentInput} = ${result}`);
+        updateHistory();
+        currentInput = result.toString();
+        display.value = currentInput;
+    } catch {
+        display.value = 'Error';
+        currentInput = '';
+    }
+}
+
+// Effacer l'écran
+function clearDisplay() {
+    currentInput = '';
+    display.value = '';
+}
+
+// Appliquer des fonctions trigonométriques
+function applyFunction(func) {
+    try {
+        let number = parseFloat(currentInput);
+        let result;
+        switch (func) {
+            case 'sin': result = Math.sin((number * Math.PI) / 180); break;
+            case 'cos': result = Math.cos((number * Math.PI) / 180); break;
+            case 'tan': result = Math.tan((number * Math.PI) / 180); break;
+            case 'asin': result = Math.asin(number) * (180 / Math.PI); break;
+            case 'acos': result = Math.acos(number) * (180 / Math.PI); break;
+            case 'atan': result = Math.atan(number) * (180 / Math.PI); break;
+        }
+        history.push(`${func}(${number}) = ${result}`);
+        updateHistory();
+        currentInput = result.toString();
+        display.value = currentInput;
+    } catch {
+        display.value = 'Error';
+        currentInput = '';
+    }
+}
+
+// Mettre à jour l'historique
+function updateHistory() {
+    const historyList = document.getElementById('history-list');
+    historyList.innerHTML = '';
+    history.forEach(entry => {
+        const listItem = document.createElement('li');
+        listItem.textContent = entry;
+        historyList.appendChild(listItem);
+    });
+}
+        </pre>
+    </div>
+    <div class="explanation-section">
+        <h1>Explications</h1>
+        <h2>Fonctions principales</h2>
+        <ul>
+            <li>
+                <strong>appendNumber(number):</strong> Cette fonction ajoute un chiffre ou un nombre à l'entrée actuelle. Elle met à jour l'affichage avec le contenu ajouté.
+            </li>
+            <li>
+                <strong>appendOperator(operator):</strong> Ajoute un opérateur (+, -, *, /) uniquement si l'entrée actuelle est valide (pas deux opérateurs consécutifs).
+            </li>
+            <li>
+                <strong>appendDot():</strong> Ajoute un point décimal (.) si aucun point n'existe déjà dans le nombre actuel.
+            </li>
+            <li>
+                <strong>calculate():</strong> Évalue l'entrée actuelle comme une expression mathématique (par exemple, "5+3") et affiche le résultat. L'expression et le résultat sont également ajoutés à l'historique.
+            </li>
+            <li>
+                <strong>clearDisplay():</strong> Réinitialise l'écran et la variable d'entrée.
+            </li>
+        </ul>
+
+        <h2>Fonctions avancées</h2>
+        <ul>
+            <li>
+                <strong>applyFunction(func):</strong> Applique des fonctions trigonométriques (sin, cos, tan, etc.) au nombre actuel. Par exemple, "sin(45)" renvoie le sinus de 45 degrés. Les fonctions disponibles incluent sin, cos, tan, asin, acos, atan.
+            </li>
+        </ul>
+
+        <h2>Historique</h2>
+        <p>La liste <strong>history</strong> conserve tous les calculs effectués. La méthode <strong>push()</strong> ajoute chaque calcul au tableau. La fonction <strong>updateHistory()</strong> parcourt ce tableau pour afficher les résultats précédents sous forme de liste.</p>
+
+        <h2>Gestion des erreurs</h2>
+        <p>Des blocs <strong>try...catch</strong> sont utilisés pour gérer les erreurs. Par exemple, si l'utilisateur entre une expression invalide, le message "Error" s'affiche et l'entrée est réinitialisée.</p>
+
+        <h2>Structure générale</h2>
+        <p>Le code est divisé en trois parties :</p>
+        <ol>
+            <li>Gestion des nombres et des opérateurs.</li>
+            <li>Calcul des résultats et fonctions trigonométriques.</li>
+            <li>Mise à jour de l'interface utilisateur, comme l'historique.</li>
+        </ol>
+        <a href="explanation.html" class="-btn">Explanation</a>
+        <a href="scientific.html" class="--btn">Scientific</a>
+    </div>
+</body>
+</html>
